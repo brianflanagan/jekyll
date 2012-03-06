@@ -110,3 +110,11 @@ Feature: Create sites
     When I run jekyll
     Then the _site directory should exist
     And I should see "SomeDirective" in "_site/.htaccess"
+    
+  Scenario: Basic site with static file in public root
+    Given I have a configuration file with "public_root" set to "/public"
+    And I have a public directory
+    And I have an "public/more.html" file that contains "To learn more spend time on wiki"
+    When I run jekyll
+    Then the _site directory should exist
+    And I should see "To learn more spend time on wiki" in "_site/more.html"
